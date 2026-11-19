@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MVVMBBasic.ViewModels"
+             x:Class="MVVMBBasic.Views.ChangeCalculatorPage"
+             x:DataType="vm:ChangeCalculatorViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30"
+                             Spacing="15"
+                             VerticalOptions="Center">
+
+            <Label Text="Currency Converter"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Currency you have" />
+
+            <Picker Title="Choose source currency"
+                    ItemsSource="{Binding Currencies}"
+                    ItemDisplayBinding="{Binding DisplayName}"
+                    SelectedItem="{Binding FromCurrency, Mode=TwoWay}" />
+
+            <Entry Text="{Binding Amount}"
+                   Placeholder="Amount you have"
+                   Keyboard="Numeric" />
+
+            <Label Text="Currency you want" />
+
+            <Picker Title="Choose target currency"
+                    ItemsSource="{Binding Currencies}"
+                    ItemDisplayBinding="{Binding DisplayName}"
+                    SelectedItem="{Binding ToCurrency, Mode=TwoWay}" />
+
+            <Button Text="Convert"
+                    Command="{Binding ConvertCommand}" />
+
+            <Button Text="Clear"
+                    Command="{Binding ClearCommand}"
+                    BackgroundColor="Gray" />
+
+            <Border BackgroundColor="#F0F0F0"
+                    Padding="20"
+                    Margin="0,10,0,0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Converted amount:"
+                           FontSize="18"
+                           HorizontalOptions="Center" />
+
+                    <Label Text="{Binding ConversionResult}"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="Green"
+                           HorizontalOptions="Center" />
+
+                    <Label Text="Fixed sample exchange rates"
+                           FontSize="12"
+                           TextColor="Gray"
+                           HorizontalOptions="Center" />
+
+                    <Label Text="{Binding Message}"
+                           TextColor="Red"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

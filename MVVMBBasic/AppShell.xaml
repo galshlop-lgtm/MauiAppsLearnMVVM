@@ -4,22 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MVVMBBasic"
-    xmlns:views="clr-namespace:Views"
-    Title="MVVMBBasic">
+    xmlns:views="clr-namespace:MVVMBBasic.Views"
+    Title="Calculator Hub"
+    FlyoutBehavior="Disabled">
 
-
-    <FlyoutItem Title="Calculator Age">
-        <ShellContent
-        Title="Calculator Age"
-        Route="CalcAge"
-        ContentTemplate="{DataTemplate views:CalcAgePage}"/>
-    </FlyoutItem>
-
-    <FlyoutItem Title="Math Calculator">
-        <ShellContent
-        Title="Math Calculator"
-        Route="CalculatorPage"
-        ContentTemplate="{DataTemplate views:CalculatorPage}"/>
-    </FlyoutItem>
-
+    <ShellContent
+        Title="Welcome"
+        Route="Welcome"
+        ContentTemplate="{DataTemplate views:WelcomePage}" />
 </Shell>

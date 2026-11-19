@@ -1,57 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using Microsoft.Maui.Controls;
 
-namespace ViewModels
+namespace MVVMBBasic.ViewModels
 {
     public class CalcAgeViewModel : BaseViewModel
     {
-        public ICommand CalculateAgeCommand { get; }
+        private string _yearOfBirth = string.Empty;
+        private string _result = "Enter your year of birth.";
+
         public CalcAgeViewModel()
         {
-            Title = "דף חישוב גיל";
+            Title = "Age Calculator";
             CalculateAgeCommand = new Command(CalculateAge);
         }
-        private string _yearOfBirth = string.Empty;
-        private string _result = string.Empty;
+
+        public ICommand CalculateAgeCommand { get; }
+
         public string YearOfBirth
         {
             get => _yearOfBirth;
-            set
-            {
-                if (_yearOfBirth != value)
-                {
-                    _yearOfBirth = value;
-                    OnPropertyChanged();
-                }
-            }
+            set => SetProperty(ref _yearOfBirth, value);
         }
+
         public string Result
         {
             get => _result;
-            set
-            {
-                if (_result != value)
-                {
-                    _result = value;
-                    OnPropertyChanged();
-                }
-            }
+            private set => SetProperty(ref _result, value);
         }
+
         public void CalculateAge()
         {
-            if (int.TryParse(YearOfBirth, out int birthYear))
+            if (!int.TryParse(YearOfBirth, out int birthYear))
             {
-                int currentYear = DateTime.Now.Year;
-                int age = currentYear - birthYear;
-                Result = $"הגיל שלך הוא: {age}";
+                Result = "Please enter a valid birth year.";
+                return;
             }
-            else
+
+            int currentYear = DateTime.Today.Year;
+            if (birthYear < 1 || birthYear > currentYear)
             {
-                Result = "נא להכניס שנה תקינה במספרים.";
+                Result = $"Enter a year between 1 and {currentYear}.";
+                return;
             }
+
+            int age = currentYear - birthYear;
+            Result = $"Your current age is {age}.";
         }
     }
-
 }

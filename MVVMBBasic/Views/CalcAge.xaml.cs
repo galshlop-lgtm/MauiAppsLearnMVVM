@@ -1,40 +1,17 @@
-﻿using ViewModels;
+﻿using Microsoft.Maui.Controls;
+using MVVMBBasic.ViewModels;
 
-namespace Views
+namespace MVVMBBasic.Views;
+
+public partial class CalcAgePage : ContentPage
 {
-    public partial class CalcAgePage : ContentPage
+    public CalcAgePage() : this(new CalcAgeViewModel())
     {
+    }
 
-
-        public CalcAgePage() : this(new CalcAgeViewModel())
-        {
-        }
-
-        // קבלת ה-ViewModel ישירות דרך Dependency Injection וחיבור ה-Binding Context
-        public CalcAgePage(CalcAgeViewModel viewModel)
-        {
-            InitializeComponent();
-            BindingContext = viewModel;
-        }
-
-
-
-        //// פונקציית האירוע (Event Handler)
-        //private void OnCalculateAgeClicked(object sender, EventArgs e)
-        //{
-        //    // 1. קריאה ישירה מרכיב ה-XAML
-        //    if (int.TryParse(YearEntry.Text, out int birthYear))
-        //    {
-        //        int currentYear = DateTime.Now.Year;
-        //        int age = currentYear - birthYear;
-
-        //        // 2. כתיבה והזרקה ישירה לרכיב ה-XAML
-        //        ResultLabel.Text = $"הגיל שלך הוא: {age}";
-        //    }
-        //    else
-        //    {
-        //        ResultLabel.Text = "נא להכניס שנה תקינה במספרים.";
-        //    }
-        //}
+    public CalcAgePage(CalcAgeViewModel viewModel)
+    {
+        InitializeComponent();
+        BindingContext = viewModel;
     }
 }
